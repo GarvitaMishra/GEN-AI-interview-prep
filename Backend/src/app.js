@@ -3,13 +3,15 @@ const cookieParser = require("cookie-parser")
 const cors = require("cors")
 
 const app = express()
+app.set("trust proxy", 1) // trust first proxy, needed for secure cookies to work behind proxies/load balancers
 
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-  origin: 
-    "https://gen-ai-interview-prep-fawn.vercel.app",
-  credentials: true
+  origin: "https://gen-ai-interview-prep-fawn.vercel.app",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }))
 
 /* require all the routes here */
