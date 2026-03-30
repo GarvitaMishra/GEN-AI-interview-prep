@@ -2,6 +2,7 @@ const userModel = require("../models/user.model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const tokenBlacklistModel = require("../models/blacklist.model")
+const { path } = require("../app")
 
 /**
  * @name registerUserController
