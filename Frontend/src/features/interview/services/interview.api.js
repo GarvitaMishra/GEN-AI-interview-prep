@@ -11,9 +11,29 @@ export default api;
  * @description Service to generate interview report based on user self description, resume and job description.
  */
 export const generateInterviewReport = async (data) => {
-  const response = await api.post("/api/interview/", data);
-  return response.data;
-};
+  const formData = new FormData()
+
+  if (data.resume) {
+    formData.append("resume", data.resume)
+  }
+
+  if (data.jobDescription) {
+    formData.append("jobDescription", data.jobDescription)
+  }
+
+  if (data.selfDescription) {
+    formData.append("selfDescription", data.selfDescription)
+  }
+
+  const response = await api.post("/api/interview/", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data"
+    },
+    withCredentials: true
+  })
+
+  return response.data
+}
 
 /**
  * @description Service to get interview report by interviewId.
