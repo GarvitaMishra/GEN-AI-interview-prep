@@ -26,9 +26,6 @@ export const generateInterviewReport = async (data) => {
   }
 
   const response = await api.post("/api/interview/", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data"
-    },
     withCredentials: true
   })
 
@@ -39,7 +36,9 @@ export const generateInterviewReport = async (data) => {
  * @description Service to get interview report by interviewId.
  */
 export const getInterviewReportById = async (interviewId) => {
-    const response = await api.get(`/api/interview/report/${interviewId}`)
+    const response = await api.get(`/api/interview/report/${interviewId}`,{
+        withCredentials: true
+    })
 
     return response.data
 }
@@ -49,7 +48,9 @@ export const getInterviewReportById = async (interviewId) => {
  * @description Service to get all interview reports of logged in user.
  */
 export const getAllInterviewReports = async () => {
-    const response = await api.get("/api/interview/")
+    const response = await api.get("/api/interview/",{
+        withCredentials: true
+    })
 
     return response.data
 }
@@ -60,7 +61,8 @@ export const getAllInterviewReports = async () => {
  */
 export const generateResumePdf = async ({ interviewReportId }) => {
     const response = await api.post(`/api/interview/resume/pdf/${interviewReportId}`, null, {
-        responseType: "blob"
+        responseType: "blob",
+        withCredentials: true
     })
 
     return response.data
