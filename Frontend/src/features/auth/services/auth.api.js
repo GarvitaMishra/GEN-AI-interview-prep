@@ -17,7 +17,7 @@ export async function register({ username, email, password }) {
 
     } catch (err) {
 
-        console.log(err)
+        throw err.response?.data?.message || "An error occurred during registration"    
 
     }
 
@@ -34,7 +34,7 @@ export async function login({ email, password }) {
         return response.data
 
     } catch (err) {
-        console.log(err)
+        throw err.response?.data?.message || "An error occurred during login"
     }
 
 }

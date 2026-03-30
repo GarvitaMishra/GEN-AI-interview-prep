@@ -13,8 +13,13 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await handleLogin({email,password})
-        navigate('/')
+        try{
+            await handleLogin({email,password})
+            navigate('/')
+        }
+        catch(err){
+            alert(err)
+        }
     }
 
     if(loading){
