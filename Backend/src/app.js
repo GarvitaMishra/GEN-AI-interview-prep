@@ -7,10 +7,8 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://gen-ai-interview-prep-fawn.vercel.app"
-  ],
+  origin: 
+    "https://gen-ai-interview-prep-fawn.vercel.app",
   credentials: true
 }))
 
